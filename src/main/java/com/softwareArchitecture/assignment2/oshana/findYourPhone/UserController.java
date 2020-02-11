@@ -11,7 +11,7 @@ import java.util.List;
 @SpringBootApplication
 @RestController
 @CrossOrigin(origins = "*")
-public class MainController {
+public class UserController {
 
     @Autowired
     private UsersRepository repository;
@@ -19,7 +19,7 @@ public class MainController {
     @PostMapping("/register")
     public String register(@RequestBody Users user){
        repository.save(user);
-       return "Hi" + user.getName() + " your Registration process successfully completed";
+       return "Hi " + user.getName() + " your Registration was successfully Completed !";
     }
 
     @GetMapping("/getAllUsers")
@@ -37,5 +37,8 @@ public class MainController {
         repository.deleteById(id);
         return repository.findAll();
     }
+
+    @PostMapping("/savePhoneModel/{}")
+    public String saveUserPhone()
 
 }

@@ -1,7 +1,7 @@
 package com.softwareArchitecture.assignment2.oshana.findYourPhone.model;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.Optional;
 
 @Entity
 @Table(name="phones")
@@ -21,15 +21,28 @@ public class Phones {
     private String details;
 
     @Column(name = "price")
-    private int price;
+    private long price;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(name = "phone_offer", joinColumns = @JoinColumn(name = "phone_id"), inverseJoinColumns = @JoinColumn(name = "offer_id"))
-    private Set<Offers> offers;
+    @Column(name = "searchTags")
+    private String searchTags;
+
+    @Column(name = "offer")
+    private String offer;
+
+    @Column(name="buyingUrl")
+    private String buyingUrl;
+
+//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//    @JoinTable(name = "phone_offer", joinColumns = @JoinColumn(name = "phone_id"), inverseJoinColumns = @JoinColumn(name = "offer_id"))
+//    private Set<Offers> offers;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_phones")
     private Users user;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "store_phones")
+    private Optional<OutSideStores> outSideStore;
 
     public void setId(int id) {
         this.id = id;
@@ -47,16 +60,33 @@ public class Phones {
         this.details = details;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(long price) {
         this.price = price;
     }
 
-    public void setOffers(Set<Offers> offers) {
-        this.offers = offers;
+    public void setSearchTags(String searchTags) {
+        this.searchTags = searchTags;
+    }
+
+//    public void setOffers(Set<Offers> offers) {
+//        this.offers = offers;
+//    }
+
+
+    public void setOffer(String offer) {
+        this.offer = offer;
     }
 
     public void setUser(Users user) {
         this.user = user;
+    }
+
+    public void setOutSideStore(Optional<OutSideStores> storeId) {
+        this.outSideStore = storeId;
+    }
+
+    public void setBuyingUrl(String buyingUrl) {
+        this.buyingUrl = buyingUrl;
     }
 
     public int getId() {
@@ -75,15 +105,31 @@ public class Phones {
         return details;
     }
 
-    public int getPrice() {
+    public long getPrice() {
         return price;
     }
 
-    public Set<Offers> getOffers() {
-        return offers;
+    public String getSearchTags() {
+        return searchTags;
+    }
+
+//    public Set<Offers> getOffers() {
+//        return offers;
+//    }
+
+    public String getOffer() {
+        return offer;
     }
 
     public Users getUser() {
         return user;
+    }
+
+    public Optional<OutSideStores> getOutSideStore() {
+        return outSideStore;
+    }
+
+    public String getBuyingUrl() {
+        return buyingUrl;
     }
 }

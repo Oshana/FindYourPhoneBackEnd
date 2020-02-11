@@ -10,18 +10,12 @@ public class Offers {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column
-    private String offer;
-
-    @Column
-    private String model;
-
-    @Column
-    private String brand;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "phone_offer")
-    private Phones phones;
+    private Phones phone;
+
+    @Column
+    private String offer;
 
     public int getId() {
         return id;
@@ -31,16 +25,8 @@ public class Offers {
         return offer;
     }
 
-    public String getModel() {
-        return model;
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public Phones getPhones() {
-        return phones;
+    public Phones getPhone() {
+        return phone;
     }
 
     public void setId(int id) {
@@ -51,15 +37,7 @@ public class Offers {
         this.offer = offer;
     }
 
-    public void setModel(String model) {
-        this.model = model;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
-    public void setPhones(Phones phones) {
-        this.phones = phones;
+    public void setPhones(Phones phone) {
+        this.phone = phone;
     }
 }

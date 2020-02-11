@@ -1,7 +1,7 @@
-package com.softwareArchitecture.assignment2.oshana.findYourPhone.loginController.config;
+package com.softwareArchitecture.assignment2.oshana.findYourPhone.config;
 
+import com.softwareArchitecture.assignment2.oshana.findYourPhone.model.CustomUserDetails;
 import com.softwareArchitecture.assignment2.oshana.findYourPhone.repository.UsersRepository;
-import com.softwareArchitecture.assignment2.oshana.findYourPhone.loginController.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -18,9 +18,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-
     @Autowired
-    private CustomUserDetailsService userDetailsService;
+    CustomUserDetailsService customUserDetailsService;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {

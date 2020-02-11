@@ -1,6 +1,7 @@
 package com.softwareArchitecture.assignment2.oshana.findYourPhone.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import java.util.Set;
 
 @Entity
@@ -12,20 +13,14 @@ public class Users {
     @Column(name = "user_id")
     private int id;
 
-    @Column(name = "email")
-    private String email;
-
-    @Column(name = "password")
-    private String password;
-
     @Column(name = "name")
     private String name;
 
-    @Column(name = "last_name")
-    private String lastName;
+    @Column(name = "email")
+    private Email email;
 
-    @Column(name = "active")
-    private int active;
+    @Column(name = "password")
+    private String password;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -39,11 +34,9 @@ public class Users {
     }
 
     public Users(Users users) {
-        this.active = users.getActive();
         this.email = users.getEmail();
         this.roles = users.getRoles();
         this.name = users.getName();
-        this.lastName =users.getLastName();
         this.id = users.getId();
         this.password = users.getPassword();
         this.savedPhones = users.getSavedPhones();
@@ -53,7 +46,7 @@ public class Users {
         return id;
     }
 
-    public String getEmail() {
+    public Email getEmail() {
         return email;
     }
 
@@ -63,14 +56,6 @@ public class Users {
 
     public String getName() {
         return name;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public int getActive() {
-        return active;
     }
 
     public Set<Phones> getSavedPhones() {
@@ -85,7 +70,7 @@ public class Users {
         this.id = id;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(Email email) {
         this.email = email;
     }
 
@@ -95,14 +80,6 @@ public class Users {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public void setActive(int active) {
-        this.active = active;
     }
 
     public void setRoles(Set<Role> roles) {

@@ -1,4 +1,4 @@
-package com.softwareArchitecture.assignment2.oshana.findYourPhone.loginController.resource;
+package com.softwareArchitecture.assignment2.oshana.findYourPhone.resource;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;

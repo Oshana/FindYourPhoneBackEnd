@@ -1,4 +1,4 @@
-package com.softwareArchitecture.assignment2.oshana.findYourPhone.loginController.service;
+package com.softwareArchitecture.assignment2.oshana.findYourPhone.config;
 
 import com.softwareArchitecture.assignment2.oshana.findYourPhone.model.CustomUserDetails;
 import com.softwareArchitecture.assignment2.oshana.findYourPhone.model.Users;
