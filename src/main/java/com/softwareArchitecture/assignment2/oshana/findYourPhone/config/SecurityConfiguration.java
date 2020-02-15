@@ -1,6 +1,5 @@
 package com.softwareArchitecture.assignment2.oshana.findYourPhone.config;
 
-import com.softwareArchitecture.assignment2.oshana.findYourPhone.model.CustomUserDetails;
 import com.softwareArchitecture.assignment2.oshana.findYourPhone.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -18,13 +17,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    CustomUserDetailsService customUserDetailsService;
+
+    CustomUserDetailsService customUserDetailsService = new CustomUserDetailsService();
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
-        auth.userDetailsService(userDetailsService)
+        auth.userDetailsService(customUserDetailsService)
                 .passwordEncoder(getPasswordEncoder());
     }
 

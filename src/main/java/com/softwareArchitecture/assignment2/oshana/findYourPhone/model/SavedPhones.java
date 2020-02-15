@@ -1,17 +1,17 @@
 package com.softwareArchitecture.assignment2.oshana.findYourPhone.model;
 
 import javax.persistence.*;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 
 @Entity
-@Table(name="phones")
-public class Phones {
+@Table(name="savedPhones")
+public class SavedPhones {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column(name = "user_id")
+    private int user;
 
     @Column(name = "brand")
     private String brand;
@@ -25,9 +25,6 @@ public class Phones {
     @Column(name = "price")
     private String price;
 
-    @Column(name = "searchTags")
-    private String searchTags;
-
     @Column(name = "store")
     private String StoreName;
 
@@ -37,16 +34,15 @@ public class Phones {
     @Column(name="buyingUrl")
     private String buyingUrl;
 
-//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//    @JoinTable(name = "phone_offer", joinColumns = @JoinColumn(name = "phone_id"), inverseJoinColumns = @JoinColumn(name = "offer_id"))
-//    private Set<Offers> offers;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_phone")
-    private Users user;
+    @Column(name = "subscribe")
+    private boolean subscribe;
 
     public int getId() {
         return id;
+    }
+
+    public int getUserId() {
+        return user;
     }
 
     public String getBrand() {
@@ -65,8 +61,8 @@ public class Phones {
         return price;
     }
 
-    public String getSearchTags() {
-        return searchTags;
+    public String getStoreName() {
+        return StoreName;
     }
 
     public String getOffer() {
@@ -77,16 +73,16 @@ public class Phones {
         return buyingUrl;
     }
 
-    public Users getUser() {
-        return user;
-    }
-
-    public String getStoreName() {
-        return StoreName;
+    public boolean isSubscribe() {
+        return subscribe;
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public void setUserId(int user) {
+        this.user = user;
     }
 
     public void setBrand(String brand) {
@@ -105,8 +101,8 @@ public class Phones {
         this.price = price;
     }
 
-    public void setSearchTags(String searchTags) {
-        this.searchTags = searchTags;
+    public void setStoreName(String storeName) {
+        StoreName = storeName;
     }
 
     public void setOffer(String offer) {
@@ -117,11 +113,7 @@ public class Phones {
         this.buyingUrl = buyingUrl;
     }
 
-    public void setUser(Users user) {
-        this.user = user;
-    }
-
-    public void setStoreName(String storeName) {
-        StoreName = storeName;
+    public void setSubscribe(boolean subscribe) {
+        this.subscribe = subscribe;
     }
 }

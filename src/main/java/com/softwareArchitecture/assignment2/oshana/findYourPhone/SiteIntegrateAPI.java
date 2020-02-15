@@ -1,4 +1,4 @@
-package com.softwareArchitecture.assignment2.oshana.findYourPhone.siteIntegrateAPI;
+package com.softwareArchitecture.assignment2.oshana.findYourPhone;
 
 import com.softwareArchitecture.assignment2.oshana.findYourPhone.Phone;
 import com.softwareArchitecture.assignment2.oshana.findYourPhone.model.OutSideStores;
@@ -6,15 +6,15 @@ import com.softwareArchitecture.assignment2.oshana.findYourPhone.model.Phones;
 import com.softwareArchitecture.assignment2.oshana.findYourPhone.repository.OutSideStoresRepository;
 import com.softwareArchitecture.assignment2.oshana.findYourPhone.repository.PhonesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
+@SpringBootApplication
 @RestController
+@CrossOrigin(origins = "*")
 public class SiteIntegrateAPI {
 
     @Autowired
@@ -23,15 +23,14 @@ public class SiteIntegrateAPI {
     @Autowired
     OutSideStoresRepository outSideStoresRepository;
 
-    @PostMapping("/integrateService/addData/{storeId}/{phones}")
-    public List<String> integrateOutSitePhones(@PathVariable int storeId, @PathVariable List<Phone> phones){
-
-        Optional<OutSideStores> outSideStore = outSideStoresRepository.findById(storeId);
+    @PostMapping("/integrateService/addData/{storeName}")
+    public List<String> integrateOutSitePhones(@PathVariable String storeName, @RequestBody Phone phone){
+        OutSideStores outSideStore = outSideStoresRepository.findByName(storeName);
         List<String> bugs = new ArrayList<>();
 
-        if(outSideStore.isPresent()){
-            for (Phone phone: phones
-            ) {
+        if(outSideStore != null){
+//            for (Phone phone: phones
+//            ) {
                 try {
                     Phones tempPhone = new Phones();
                     tempPhone.setBrand(phone.getBrand());
@@ -40,16 +39,16 @@ public class SiteIntegrateAPI {
                     tempPhone.setPrice(phone.getPrice());
                     tempPhone.setSearchTags(phone.getSearchTags());
                     tempPhone.setOffer(phone.getOffer());
-                    tempPhone.setOutSideStore(outSideStoresRepository.findById(storeId));
                     tempPhone.setBuyingUrl(phone.getBuyingUrl());
+                    tempPhone.setStoreName(phone.getStoreName());
                     phonesRepository.save(tempPhone);
                 } catch (Exception e) {
                     bugs.add("Error: Please check the provided data correctly for the phone "+phone.getBrand()+","
                             +phone.getModel()+"  and resend ! Thank you.");
                 }
-            }
+//            }
         }else {
-            bugs.add("Your store with id: "+storeId+"has not been registered with us. Please register your store or please" +
+            bugs.add("Your store with name: "+storeName+"has not been registered with us. Please register your store or please" +
                     " check the correctness of the id !");
         }
 

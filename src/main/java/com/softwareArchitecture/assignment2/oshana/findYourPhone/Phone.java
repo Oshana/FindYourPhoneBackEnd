@@ -6,7 +6,7 @@ public class Phone {
     private String brand;
     private String model;
     private String details;
-    private long price;
+    private String price;
     private String offer;
     private String StoreName;
     private String searchTags;
@@ -29,7 +29,7 @@ public class Phone {
         return details;
     }
 
-    public long getPrice() {
+    public String getPrice() {
         return price;
     }
 
@@ -59,7 +59,7 @@ public class Phone {
         this.details = details;
     }
 
-    public void setPrice(long price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 

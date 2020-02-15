@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PhonesRepository extends JpaRepository<Phones, Integer> {
     Phones findBySearchTags(String searchLine);
+    Phones findById(int id);
+    Phones findByModelAndBrand(String model, String brand);
 }

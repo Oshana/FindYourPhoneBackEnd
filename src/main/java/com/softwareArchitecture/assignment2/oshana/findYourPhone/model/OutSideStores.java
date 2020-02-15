@@ -2,6 +2,7 @@ package com.softwareArchitecture.assignment2.oshana.findYourPhone.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -16,19 +17,14 @@ public class OutSideStores {
     private String name;
 
     @Column(name = "email")
-    private Email email;
+    private String email;
 
     @Column(name = "url")
     private String url;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name = "outSideStores_phones", joinColumns = @JoinColumn(name = "outSideStores_id"), inverseJoinColumns = @JoinColumn(name = "phones_id"))
-    private Set<Phones> phones;
-
-    public OutSideStores(String name, Email email) {
-        this.name = name;
-        this.email = email;
-    }
+    private List<Phones> phones;
 
     public int getId() {
         return id;
@@ -38,7 +34,7 @@ public class OutSideStores {
         return name;
     }
 
-    public Email getEmail() {
+    public String getEmail() {
         return email;
     }
 
@@ -46,7 +42,7 @@ public class OutSideStores {
         return url;
     }
 
-    public Set<Phones> getPhones() {
+    public List<Phones> getPhones() {
         return phones;
     }
 
@@ -58,7 +54,7 @@ public class OutSideStores {
         this.name = name;
     }
 
-    public void setEmail(Email email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
@@ -66,7 +62,7 @@ public class OutSideStores {
         this.url = url;
     }
 
-    public void setPhones(Set<Phones> phones) {
+    public void setPhones(List<Phones> phones) {
         this.phones = phones;
     }
 }

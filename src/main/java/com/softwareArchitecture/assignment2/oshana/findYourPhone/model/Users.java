@@ -17,7 +17,7 @@ public class Users {
     private String name;
 
     @Column(name = "email")
-    private Email email;
+    private String email;
 
     @Column(name = "password")
     private String password;
@@ -46,7 +46,7 @@ public class Users {
         return id;
     }
 
-    public Email getEmail() {
+    public String getEmail() {
         return email;
     }
 
@@ -70,7 +70,7 @@ public class Users {
         this.id = id;
     }
 
-    public void setEmail(Email email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
